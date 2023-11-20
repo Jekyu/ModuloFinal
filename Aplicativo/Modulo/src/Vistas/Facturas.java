@@ -32,6 +32,7 @@ public class Facturas extends JFrame {
 	private JSeparator separator;
 	private JTextField txtColocarCargo;
 	private JTable table;
+	private JTextField txtAquLaId;
 
 	/**
 	 * Launch the application.
@@ -196,7 +197,7 @@ public class Facturas extends JFrame {
 		lblPas.setBounds(410, 130, 100, 20);
 		background.add(lblPas);
 		
-		JLabel nombreTrabajador = new JLabel("Colocar Nombre");
+		JLabel nombreTrabajador = new JLabel("Nombre Chambeador");
 		nombreTrabajador.setFont(new Font("Roboto", Font.BOLD, 18));
 		nombreTrabajador.setBounds(88, 29, 190, 20);
 		background.add(nombreTrabajador);
@@ -220,8 +221,34 @@ public class Facturas extends JFrame {
 		
 		JTextArea txtResultado = new JTextArea();
 		txtResultado.setText("Aqui insertar los datos");
-		txtResultado.setBounds(21, 284, 489, 126);
+		txtResultado.setBounds(21, 284, 489, 23);
 		background.add(txtResultado);
+		
+		JTextArea txtResultado_1 = new JTextArea();
+		txtResultado_1.setText("Aqui insertar los datos");
+		txtResultado_1.setBounds(21, 314, 489, 23);
+		background.add(txtResultado_1);
+		
+		JTextArea txtResultado_2 = new JTextArea();
+		txtResultado_2.setText("Aqui insertar los datos");
+		txtResultado_2.setBounds(21, 348, 489, 23);
+		background.add(txtResultado_2);
+		
+		JLabel nombreCliente = new JLabel("Aquí nombre Cliente");
+		nombreCliente.setFont(new Font("Roboto", Font.BOLD, 18));
+		nombreCliente.setBounds(88, 201, 190, 20);
+		background.add(nombreCliente);
+		
+		txtAquLaId = new JTextField();
+		txtAquLaId.setText("Aquí la ID de la persona");
+		txtAquLaId.setForeground(Color.GRAY);
+		txtAquLaId.setFont(new Font("Roboto Light", Font.PLAIN, 16));
+		txtAquLaId.setEditable(false);
+		txtAquLaId.setColumns(10);
+		txtAquLaId.setBorder(null);
+		txtAquLaId.setBackground(Color.WHITE);
+		txtAquLaId.setBounds(88, 223, 190, 20);
+		background.add(txtAquLaId);
 	}
 	
 	// ---- Con textDefault tambien se puede agregar los datos de la consulta 
