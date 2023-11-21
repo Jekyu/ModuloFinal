@@ -167,6 +167,25 @@ public class Facturas extends JFrame {
 		});
 		background.add(btnLimpiarTabla);
 		
+		JButton btnLimpiarTodo = new JButton("LIMPIAR TODO");
+		btnLimpiarTodo.setFont(new Font("Roboto Black", Font.PLAIN, 14));
+		btnLimpiarTodo.setBorder(null);
+		btnLimpiarTodo.setBackground(new Color(250, 240, 230));
+		btnLimpiarTodo.setBounds(21, 160, 257, 23);
+		btnLimpiarTodo.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				btnLimpiarTodo.setBackground(new Color(250, 128, 114));
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				btnLimpiarTodo.setBackground(new Color(250, 240, 230));
+			}
+			public void mouseClicked(MouseEvent e) {
+				setTextDefault();
+				}
+		});
+		background.add(btnLimpiarTodo);
+		
 		
 		final JButton btnConsultar = new JButton("CONSULTAR");
 		btnConsultar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
@@ -273,21 +292,6 @@ public class Facturas extends JFrame {
 		txtAquLaId.setBounds(88, 225, 190, 20);
 		background.add(txtAquLaId);
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Item", "Tipo Detalle", "Ref Producto", "Cantidad", "Precio"},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Item", "Tipo Detalle", "Ref Producto", "Cantidad", "Precio"
-			}
-		));
-		table_1.setBounds(21, 272, 489, 83);
-		background.add(table_1);
 		
 		txtTotalProductos = new JTextField();
 		txtTotalProductos.setText("Total productos y servicios: xxx");
@@ -321,13 +325,25 @@ public class Facturas extends JFrame {
 		txtTotalFactura.setBackground(Color.WHITE);
 		txtTotalFactura.setBounds(21, 419, 278, 20);
 		background.add(txtTotalFactura);
+
 		
-		JButton btnLimpiarTodo = new JButton("LIMPIAR TODO");
-		btnLimpiarTodo.setFont(new Font("Roboto Black", Font.PLAIN, 14));
-		btnLimpiarTodo.setBorder(null);
-		btnLimpiarTodo.setBackground(new Color(250, 240, 230));
-		btnLimpiarTodo.setBounds(21, 160, 257, 23);
-		background.add(btnLimpiarTodo);
+		// ------ TABLA Y MODELOS
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Item", "Tipo Detalle", "Ref Producto", "Cantidad", "Precio"},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Item", "Tipo Detalle", "Ref Producto", "Cantidad", "Precio"
+			}
+		));
+		table_1.setBounds(21, 272, 489, 83);
+		background.add(table_1);
 		
 	}
 	
