@@ -24,6 +24,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.table.DefaultTableModel;
 
 public class Facturas extends JFrame {
 
@@ -35,6 +36,7 @@ public class Facturas extends JFrame {
 	private JTextField txtColocarCargo;
 	private JTable table;
 	private JTextField txtAquLaId;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -59,7 +61,7 @@ public class Facturas extends JFrame {
 		setTitle("Facturas");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 595, 476);
+		setBounds(100, 100, 552, 476);
 		background = new JPanel();
 		background.setBackground(new Color(255, 255, 255));
 		background.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -256,17 +258,17 @@ public class Facturas extends JFrame {
 		
 		JTextArea txtResultado = new JTextArea();
 		txtResultado.setText("Aqui insertar los datos");
-		txtResultado.setBounds(21, 284, 489, 23);
+		txtResultado.setBounds(21, 339, 489, 23);
 		background.add(txtResultado);
 		
 		JTextArea txtResultado_1 = new JTextArea();
 		txtResultado_1.setText("Aqui insertar los datos");
-		txtResultado_1.setBounds(21, 314, 489, 23);
+		txtResultado_1.setBounds(21, 366, 489, 23);
 		background.add(txtResultado_1);
 		
 		JTextArea txtResultado_2 = new JTextArea();
 		txtResultado_2.setText("Aqui insertar los datos");
-		txtResultado_2.setBounds(21, 348, 489, 23);
+		txtResultado_2.setBounds(21, 386, 489, 23);
 		background.add(txtResultado_2);
 		
 		JLabel nombreCliente = new JLabel("Aquí nombre Cliente");
@@ -284,6 +286,21 @@ public class Facturas extends JFrame {
 		txtAquLaId.setBackground(Color.WHITE);
 		txtAquLaId.setBounds(88, 207, 190, 20);
 		background.add(txtAquLaId);
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Item", "Tipo Detalle", "Ref Producto", "Cantidad", "Precio"},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Item", "Tipo Detalle", "Ref Producto", "Cantidad", "Precio"
+			}
+		));
+		table_1.setBounds(21, 264, 489, 64);
+		background.add(table_1);
 		
 	}
 	
