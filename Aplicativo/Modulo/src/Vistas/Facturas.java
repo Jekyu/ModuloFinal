@@ -87,22 +87,22 @@ public class Facturas extends JFrame {
 		
 		//- --- -- ComboBox
 		
-		JComboBox cBoxTipoDoc= new JComboBox();
-		cBoxTipoDoc.setEditable(true);
-		cBoxTipoDoc.setBackground(new Color(255, 255, 255));
-		cBoxTipoDoc.setBorder(null);
-		cBoxTipoDoc.setFont(new Font("Roboto", Font.PLAIN, 13));
-		cBoxTipoDoc.setBounds(300, 155, 100, 22);
-		background.add(cBoxTipoDoc);
+		JComboBox cBoxDetalle= new JComboBox();
+		cBoxDetalle.setEditable(true);
+		cBoxDetalle.setBackground(new Color(255, 255, 255));
+		cBoxDetalle.setBorder(null);
+		cBoxDetalle.setFont(new Font("Roboto", Font.PLAIN, 13));
+		cBoxDetalle.setBounds(300, 155, 100, 22);
+		background.add(cBoxDetalle);
 		
-		JComboBox cBoxPais = new JComboBox();
-		cBoxPais.setEditable(true);
-		cBoxPais.setToolTipText("");
-		cBoxPais.setBackground(new Color(255, 255, 255));
-		cBoxPais.setBorder(null);
-		cBoxPais.setFont(new Font("Roboto", Font.PLAIN, 13));
-		cBoxPais.setBounds(410, 155, 100, 22);
-		background.add(cBoxPais);
+		JComboBox cBoxNoFac = new JComboBox();
+		cBoxNoFac.setEditable(true);
+		cBoxNoFac.setToolTipText("");
+		cBoxNoFac.setBackground(new Color(255, 255, 255));
+		cBoxNoFac.setBorder(null);
+		cBoxNoFac.setFont(new Font("Roboto", Font.PLAIN, 13));
+		cBoxNoFac.setBounds(410, 155, 100, 22);
+		background.add(cBoxNoFac);
 
 		
 		//-----------  Separadores
@@ -183,19 +183,19 @@ public class Facturas extends JFrame {
 		lblinfo.setBounds(300, 29, 210, 20);
 		background.add(lblinfo);
 		
-		JLabel lblDocumento = new JLabel("Documento");
-		lblDocumento.setForeground(new Color(128, 128, 128));
-		lblDocumento.setBackground(new Color(255, 255, 255));
-		lblDocumento.setFont(new Font("Roboto Light", Font.PLAIN, 16));
-		lblDocumento.setBounds(300, 130, 100, 20);
-		background.add(lblDocumento);
+		JLabel lblDetalle = new JLabel("Detalle");
+		lblDetalle.setForeground(new Color(128, 128, 128));
+		lblDetalle.setBackground(new Color(255, 255, 255));
+		lblDetalle.setFont(new Font("Roboto Light", Font.PLAIN, 16));
+		lblDetalle.setBounds(300, 130, 100, 20);
+		background.add(lblDetalle);
 		
-		JLabel lblPas = new JLabel("País");
-		lblPas.setForeground(Color.GRAY);
-		lblPas.setFont(new Font("Roboto Light", Font.PLAIN, 16));
-		lblPas.setBackground(Color.WHITE);
-		lblPas.setBounds(410, 130, 100, 20);
-		background.add(lblPas);
+		JLabel lblNoFac = new JLabel("No facturados");
+		lblNoFac.setForeground(Color.GRAY);
+		lblNoFac.setFont(new Font("Roboto Light", Font.PLAIN, 16));
+		lblNoFac.setBackground(Color.WHITE);
+		lblNoFac.setBounds(410, 130, 100, 20);
+		background.add(lblNoFac);
 		
 		JLabel nombreTrabajador = new JLabel("Nombre Chambeador");
 		nombreTrabajador.setFont(new Font("Roboto", Font.BOLD, 18));
