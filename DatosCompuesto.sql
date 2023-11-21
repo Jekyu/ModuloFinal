@@ -10,7 +10,7 @@ insert into empleado values ('302','4','Carlo','Castro','1234567902','6/06/2022'
 insert into empleado values ('303','1','Camilo','Ciel','1234567903','7/06/2022','3/10/1999');
 insert into empleado values ('304','1','Caleb','Carmelo','1234567903','8/06/2022','3/10/2000');
 insert into empleado values ('305','4','Camilo','Ciro','1234567904','9/06/2022','3/10/2001');
---select * from empleado;
+select * from empleado;
 
 --Darles un cargo
 insert into historiacargo values ('1','1','101','1/06/2022','31/05/2024');
@@ -24,14 +24,14 @@ insert into historiacargo values ('8','3','302','6/06/2022','5/06/2024');
 insert into historiacargo values ('9','3','303','7/06/2022','6/06/2024');
 insert into historiacargo values ('10','3','304','8/06/2022','7/06/2024');
 insert into historiacargo values ('11','3','305','9/06/2022','8/06/2024');
---select * from historiacargo;
+select * from historiacargo;
 
 --Insertando Personas Cliente
 insert into persona values ('601','1','1','Paulo','Castro','2/06/2022','60000001');
 insert into persona values ('602','1','1','Pablo','Ciel','3/06/2023','60000002');
 insert into persona values ('603','3','1','Paola','Carmelo','1/06/2023','60000003');
 insert into persona values ('604','4','1','Pancho','Ciro','2/06/2023','60000004');
-
+select * from persona;
 
 --Insertando referencia elemento
 insert into referenciaelemento values ('1','1','Obs: Board Asus A');
@@ -155,42 +155,28 @@ select * from inventario;
 
 --- ENSAMBLES 
 
-insert into  ensamble values ('1','10/13/2023',true,'301');
-insert into  ensamble values ('2','10/14/2023',false,NULL);
-insert into  ensamble values ('3','10/15/2023',false,NULL);
+insert into  ensamble values ('1','301','13/10/2023',true);
+insert into  ensamble values ('2',NULL,'14/10/2023',false);
+insert into  ensamble values ('3',NULL,'15/10/2023',false);
 select * from ensamble;
 
 -- DETALLE ENSAMBLE
-insert into  detalleensamble values ('1','1','1');
-insert into  detalleensamble values ('2','1','5');
-insert into  detalleensamble values ('3','1','9');
-insert into  detalleensamble values ('4','1','13');
-insert into  detalleensamble values ('5','1','17');
-insert into  detalleensamble values ('6','2','21');
-insert into  detalleensamble values ('7','2','25');
-insert into  detalleensamble values ('8','2','29');
-insert into  detalleensamble values ('9','2','33');
-insert into  detalleensamble values ('10','2','37');
-insert into  detalleensamble values ('11','3','41');
-insert into  detalleensamble values ('12','3','45');
-insert into  detalleensamble values ('13','3','2');
-insert into  detalleensamble values ('14','3','6');
-insert into  detalleensamble values ('15','3','10');
+insert into  detalleensamble values ('1','1','1','1');
+insert into  detalleensamble values ('2','1','5','2');
+insert into  detalleensamble values ('3','1','9','3');
+insert into  detalleensamble values ('4','1','13','4');
+insert into  detalleensamble values ('5','1','17','5');
+insert into  detalleensamble values ('6','2','21','6');
+insert into  detalleensamble values ('7','2','25','7');
+insert into  detalleensamble values ('8','2','29','8');
+insert into  detalleensamble values ('9','2','33','9');
+insert into  detalleensamble values ('10','2','37','10');
+insert into  detalleensamble values ('11','3','41','11');
+insert into  detalleensamble values ('12','3','45','12');
+insert into  detalleensamble values ('13','3','2','1');
+insert into  detalleensamble values ('14','3','6','2');
+insert into  detalleensamble values ('15','3','10','3');
 select * from detalleensamble;
-
-select * from factura;
-select * from referenciaelemento;
-
--- CORRECCIONES POR ERRORES
-
---alter table ensamble drop constraint FK_ENSAMBLE_RELATIONS_TIPODETA
-alter table ensamble drop column idtipodeta
-alter table ensamble ADD COLUMN CODEMPLEADO          VARCHAR(3)           null;
-alter table ENSAMBLE
-   add constraint FK_ENSAMBLE_RELATIONS_EMPLEADO foreign key (CODEMPLEADO)
-      references EMPLEADO (CODEMPLEADO)
-      on delete restrict on update restrict;
-
 
 --- Querys importantes
 select E.nomempleado, E.apeempleado,  H.codempleado, H.codempleado

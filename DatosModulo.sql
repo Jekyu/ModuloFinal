@@ -104,5 +104,6 @@ insert into unidadmedia values ('18','m');
 insert into unidadmedia values ('19','RPM');
 insert into unidadmedia values ('20','RPS');
 insert into unidadmedia values ('21','MB/S');
+SELECT * from unidadmedia;
  
 Commit;
