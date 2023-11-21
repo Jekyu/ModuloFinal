@@ -37,6 +37,9 @@ public class Facturas extends JFrame {
 	private JTable table;
 	private JTextField txtAquLaId;
 	private JTable table_1;
+	private JTextField txtTotalProductos;
+	private JTextField txtIva;
+	private JTextField txtTotalFactura;
 
 	/**
 	 * Launch the application.
@@ -61,7 +64,7 @@ public class Facturas extends JFrame {
 		setTitle("Facturas");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 552, 476);
+		setBounds(100, 100, 552, 521);
 		background = new JPanel();
 		background.setBackground(new Color(255, 255, 255));
 		background.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -128,7 +131,7 @@ public class Facturas extends JFrame {
 		btnAceptar.setBackground(new Color(240, 230, 140));
 		btnAceptar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		btnAceptar.setBorder(null);
-		btnAceptar.setBounds(21, 96, 210, 23);
+		btnAceptar.setBounds(21, 100, 257, 23);
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				btnAceptar.setBackground(new Color(255, 255, 0));
@@ -141,24 +144,28 @@ public class Facturas extends JFrame {
 		});
 		background.add(btnAceptar);
 		
-		final JButton btnLimpiar = new JButton("LIMPIAR");
-		btnLimpiar.setBackground(new Color(250, 240, 230));
-		btnLimpiar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
-		btnLimpiar.setBorder(null);
-		btnLimpiar.setBounds(300, 204, 210, 23);
-		btnLimpiar.addMouseListener(new MouseAdapter() {
+		final JButton btnLimpiarTabla = new JButton("LIMPIAR TABLA");
+		btnLimpiarTabla.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnLimpiarTabla.setBackground(new Color(250, 240, 230));
+		btnLimpiarTabla.setFont(new Font("Roboto Black", Font.PLAIN, 14));
+		btnLimpiarTabla.setBorder(null);
+		btnLimpiarTabla.setBounds(300, 204, 210, 23);
+		btnLimpiarTabla.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
-				btnLimpiar.setBackground(new Color(250, 128, 114));
+				btnLimpiarTabla.setBackground(new Color(250, 128, 114));
 			}
 			
 			public void mouseExited(MouseEvent e) {
-				btnLimpiar.setBackground(new Color(250, 240, 230));
+				btnLimpiarTabla.setBackground(new Color(250, 240, 230));
 			}
 			public void mouseClicked(MouseEvent e) {
 				setTextDefault();
 				}
 		});
-		background.add(btnLimpiar);
+		background.add(btnLimpiarTabla);
 		
 		
 		final JButton btnConsultar = new JButton("CONSULTAR");
@@ -182,7 +189,7 @@ public class Facturas extends JFrame {
 		btnTerminar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		btnTerminar.setBorder(null);
 		btnTerminar.setBackground(new Color(240, 255, 240));
-		btnTerminar.setBounds(21, 130, 210, 23);
+		btnTerminar.setBounds(21, 130, 257, 23);
 		btnTerminar.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				btnTerminar.setBackground(new Color(152, 251, 152));
@@ -209,7 +216,7 @@ public class Facturas extends JFrame {
 		lblClientePic.setVerticalAlignment(SwingConstants.TOP);
 		lblClientePic.setIcon(new ImageIcon(Facturas.class.getResource("/imagenes/RayoProf.jpg")));
 		lblClientePic.setBackground(SystemColor.activeCaption);
-		lblClientePic.setBounds(21, 188, 57, 57);
+		lblClientePic.setBounds(21, 204, 57, 57);
 		background.add(lblClientePic);
 		
 		
@@ -250,30 +257,9 @@ public class Facturas extends JFrame {
 		txtColocarCargo.setBounds(88, 47, 190, 20);
 		background.add(txtColocarCargo);
 		
-		/*table = new JTable();
-		table.setBounds(42, 209, 1, 1);
-		table.addColumn(new TableColumn(10,10,null,null));
-		background.add(table);*/
-		
-		
-		JTextArea txtResultado = new JTextArea();
-		txtResultado.setText("Aqui insertar los datos");
-		txtResultado.setBounds(21, 339, 489, 23);
-		background.add(txtResultado);
-		
-		JTextArea txtResultado_1 = new JTextArea();
-		txtResultado_1.setText("Aqui insertar los datos");
-		txtResultado_1.setBounds(21, 366, 489, 23);
-		background.add(txtResultado_1);
-		
-		JTextArea txtResultado_2 = new JTextArea();
-		txtResultado_2.setText("Aqui insertar los datos");
-		txtResultado_2.setBounds(21, 386, 489, 23);
-		background.add(txtResultado_2);
-		
 		JLabel nombreCliente = new JLabel("Aquí nombre Cliente");
 		nombreCliente.setFont(new Font("Roboto", Font.BOLD, 18));
-		nombreCliente.setBounds(88, 188, 190, 20);
+		nombreCliente.setBounds(88, 204, 190, 20);
 		background.add(nombreCliente);
 		
 		txtAquLaId = new JTextField();
@@ -284,7 +270,7 @@ public class Facturas extends JFrame {
 		txtAquLaId.setColumns(10);
 		txtAquLaId.setBorder(null);
 		txtAquLaId.setBackground(Color.WHITE);
-		txtAquLaId.setBounds(88, 207, 190, 20);
+		txtAquLaId.setBounds(88, 225, 190, 20);
 		background.add(txtAquLaId);
 		
 		table_1 = new JTable();
@@ -294,13 +280,54 @@ public class Facturas extends JFrame {
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
 				"Item", "Tipo Detalle", "Ref Producto", "Cantidad", "Precio"
 			}
 		));
-		table_1.setBounds(21, 264, 489, 64);
+		table_1.setBounds(21, 272, 489, 83);
 		background.add(table_1);
+		
+		txtTotalProductos = new JTextField();
+		txtTotalProductos.setText("Total productos y servicios: xxx");
+		txtTotalProductos.setForeground(new Color(0, 0, 0));
+		txtTotalProductos.setFont(new Font("Roboto Light", Font.PLAIN, 16));
+		txtTotalProductos.setEditable(false);
+		txtTotalProductos.setColumns(10);
+		txtTotalProductos.setBorder(null);
+		txtTotalProductos.setBackground(Color.WHITE);
+		txtTotalProductos.setBounds(21, 368, 278, 20);
+		background.add(txtTotalProductos);
+		
+		txtIva = new JTextField();
+		txtIva.setText("Iva(16% sobre el total): xxx");
+		txtIva.setForeground(new Color(0, 0, 0));
+		txtIva.setFont(new Font("Roboto Light", Font.PLAIN, 16));
+		txtIva.setEditable(false);
+		txtIva.setColumns(10);
+		txtIva.setBorder(null);
+		txtIva.setBackground(Color.WHITE);
+		txtIva.setBounds(21, 393, 278, 20);
+		background.add(txtIva);
+		
+		txtTotalFactura = new JTextField();
+		txtTotalFactura.setText("Total Factura: xxxx");
+		txtTotalFactura.setForeground(new Color(0, 0, 0));
+		txtTotalFactura.setFont(new Font("Roboto Light", Font.PLAIN, 16));
+		txtTotalFactura.setEditable(false);
+		txtTotalFactura.setColumns(10);
+		txtTotalFactura.setBorder(null);
+		txtTotalFactura.setBackground(Color.WHITE);
+		txtTotalFactura.setBounds(21, 419, 278, 20);
+		background.add(txtTotalFactura);
+		
+		JButton btnLimpiarTodo = new JButton("LIMPIAR TODO");
+		btnLimpiarTodo.setFont(new Font("Roboto Black", Font.PLAIN, 14));
+		btnLimpiarTodo.setBorder(null);
+		btnLimpiarTodo.setBackground(new Color(250, 240, 230));
+		btnLimpiarTodo.setBounds(21, 160, 257, 23);
+		background.add(btnLimpiarTodo);
 		
 	}
 	
