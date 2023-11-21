@@ -1,10 +1,10 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     13/11/2023 12:53:42 p.ï¿½m.                    */
+/* Created on:     20/11/2023 10:47:52 p. m.                    */
 /*==============================================================*/
 
 
-/*drop index RELATIONSHIP_2_FK;
+drop index RELATIONSHIP_2_FK;
 
 drop index RELATIONSHIP_1_FK;
 
@@ -38,7 +38,7 @@ drop index EMPLEADO_PK;
 
 drop table EMPLEADO;
 
-drop index RELATIONSHIP_14_FK;
+drop index RELATIONSHIP_27_FK;
 
 drop index ENSAMBLE_PK;
 
@@ -71,6 +71,8 @@ drop index RELATIONSHIP_6_FK;
 drop index HISTORIACARGO_PK;
 
 drop table HISTORIACARGO;
+
+drop index RELATIONSHIP_26_FK;
 
 drop index RELATIONSHIP_20_FK;
 
@@ -138,7 +140,7 @@ drop table TIPOPERSONA;
 
 drop index UNIDADMEDIA_PK;
 
-drop table UNIDADMEDIA;*/
+drop table UNIDADMEDIA;
 
 /*==============================================================*/
 /* Table: CONTACTO                                              */
@@ -184,7 +186,8 @@ create table DETALLEENSAMBLE (
    ITEMENSAMBLE         INT4                 not null,
    CONSECC              INT4                 not null,
    NOINVEN              INT4                 not null,
-   constraint PK_DETALLEENSAMBLE primary key (ITEMENSAMBLE, CONSECC, NOINVEN)
+   IDREF                INT4                 not null,
+   constraint PK_DETALLEENSAMBLE primary key (ITEMENSAMBLE, CONSECC, NOINVEN, IDREF)
 );
 
 /*==============================================================*/
@@ -193,7 +196,8 @@ create table DETALLEENSAMBLE (
 create unique index DETALLEENSAMBLE_PK on DETALLEENSAMBLE (
 ITEMENSAMBLE,
 CONSECC,
-NOINVEN
+NOINVEN,
+IDREF
 );
 
 /*==============================================================*/
@@ -207,7 +211,8 @@ CONSECC
 /* Index: RELATIONSHIP_17_FK                                    */
 /*==============================================================*/
 create  index RELATIONSHIP_17_FK on DETALLEENSAMBLE (
-NOINVEN
+NOINVEN,
+IDREF
 );
 
 /*==============================================================*/
@@ -219,6 +224,7 @@ create table DETALLEFACTURA (
    NFACTURA             INT4                 not null,
    CONSECC              INT4                 null,
    NOINVEN              INT4                 null,
+   IDREF                INT4                 null,
    CANTIDAD             INT4                 null,
    PRECIO               NUMERIC(5,2)         null,
    constraint PK_DETALLEFACTURA primary key (ITEM, NFACTURA)
@@ -257,7 +263,8 @@ CONSECC
 /* Index: RELATIONSHIP_18_FK                                    */
 /*==============================================================*/
 create  index RELATIONSHIP_18_FK on DETALLEFACTURA (
-NOINVEN
+NOINVEN,
+IDREF
 );
 
 /*==============================================================*/
@@ -293,7 +300,7 @@ TIPOIDENTIFI
 /*==============================================================*/
 create table ENSAMBLE (
    CONSECC              INT4                 not null,
-   IDTIPODETA           VARCHAR(2)           null,
+   CODEMPLEADO          VARCHAR(3)           null,
    FCHENSAMBLE          DATE                 null,
    FACTURADO            BOOL                 null,
    constraint PK_ENSAMBLE primary key (CONSECC)
@@ -307,10 +314,10 @@ CONSECC
 );
 
 /*==============================================================*/
-/* Index: RELATIONSHIP_14_FK                                    */
+/* Index: RELATIONSHIP_27_FK                                    */
 /*==============================================================*/
-create  index RELATIONSHIP_14_FK on ENSAMBLE (
-IDTIPODETA
+create  index RELATIONSHIP_27_FK on ENSAMBLE (
+CODEMPLEADO
 );
 
 /*==============================================================*/
@@ -436,16 +443,18 @@ create table INVENTARIO (
    NOINVEN              INT4                 not null,
    NFACTURA             INT4                 null,
    IDEVENTO             VARCHAR(2)           not null,
+   IDREF                INT4                 not null,
    FCHEVENTO            DATE                 null,
    VALOR                NUMERIC(4,2)         null,
-   constraint PK_INVENTARIO primary key (NOINVEN)
+   constraint PK_INVENTARIO primary key (NOINVEN, IDREF)
 );
 
 /*==============================================================*/
 /* Index: INVENTARIO_PK                                         */
 /*==============================================================*/
 create unique index INVENTARIO_PK on INVENTARIO (
-NOINVEN
+NOINVEN,
+IDREF
 );
 
 /*==============================================================*/
@@ -460,6 +469,13 @@ NFACTURA
 /*==============================================================*/
 create  index RELATIONSHIP_20_FK on INVENTARIO (
 IDEVENTO
+);
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_26_FK                                    */
+/*==============================================================*/
+create  index RELATIONSHIP_26_FK on INVENTARIO (
+IDREF
 );
 
 /*==============================================================*/
@@ -723,8 +739,8 @@ alter table DETALLEENSAMBLE
       on delete restrict on update restrict;
 
 alter table DETALLEENSAMBLE
-   add constraint FK_DETALLEE_RELATIONS_INVENTAR foreign key (NOINVEN)
-      references INVENTARIO (NOINVEN)
+   add constraint FK_DETALLEE_RELATIONS_INVENTAR foreign key (NOINVEN, IDREF)
+      references INVENTARIO (NOINVEN, IDREF)
       on delete restrict on update restrict;
 
 alter table DETALLEFACTURA
@@ -743,8 +759,8 @@ alter table DETALLEFACTURA
       on delete restrict on update restrict;
 
 alter table DETALLEFACTURA
-   add constraint FK_DETALLEF_RELATIONS_INVENTAR foreign key (NOINVEN)
-      references INVENTARIO (NOINVEN)
+   add constraint FK_DETALLEF_RELATIONS_INVENTAR foreign key (NOINVEN, IDREF)
+      references INVENTARIO (NOINVEN, IDREF)
       on delete restrict on update restrict;
 
 alter table EMPLEADO
@@ -753,8 +769,8 @@ alter table EMPLEADO
       on delete restrict on update restrict;
 
 alter table ENSAMBLE
-   add constraint FK_ENSAMBLE_RELATIONS_TIPODETA foreign key (IDTIPODETA)
-      references TIPODETALLE (IDTIPODETA)
+   add constraint FK_ENSAMBLE_RELATIONS_EMPLEADO foreign key (CODEMPLEADO)
+      references EMPLEADO (CODEMPLEADO)
       on delete restrict on update restrict;
 
 alter table FACTURA
@@ -795,6 +811,11 @@ alter table INVENTARIO
 alter table INVENTARIO
    add constraint FK_INVENTAR_RELATIONS_EVENTO foreign key (IDEVENTO)
       references EVENTO (IDEVENTO)
+      on delete restrict on update restrict;
+
+alter table INVENTARIO
+   add constraint FK_INVENTAR_RELATIONS_REFERENC foreign key (IDREF)
+      references REFERENCIAELEMENTO (IDREF)
       on delete restrict on update restrict;
 
 alter table PERSONA

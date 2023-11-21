@@ -102,12 +102,98 @@ insert into refcarac values ('48','12',NULL,'1','Semi-Modular');
 insert into refcarac values ('49','12',NULL,'5','4x PCIe 8-pin');
 select * from refcarac;
 
-
-
 --Insertando inventario
+insert into  inventario values ('1',NULL,'1','06/10/2023','40','1');	
+insert into  inventario values ('2',NULL,'2','06/11/2023','42','1');	
+insert into  inventario values ('3',NULL,'4','06/12/2023','41','1');	
+insert into  inventario values ('4',NULL,'5','06/13/2023','40','1');	
+insert into  inventario values ('5',NULL,'6','06/14/2023','35','2');	
+insert into  inventario values ('6',NULL,'1','06/15/2023','37','2');	
+insert into  inventario values ('7',NULL,'2','06/16/2023','36','2');	
+insert into  inventario values ('8',NULL,'4','06/17/2023','35','2');	
+insert into  inventario values ('9',NULL,'5','06/18/2023','55','3');	
+insert into  inventario values ('10',NULL,'6','06/19/2023','57','3');	
+insert into  inventario values ('11',NULL,'1','06/20/2023','56','3');	
+insert into  inventario values ('12',NULL,'1','7/10/2023','55','3');	
+insert into  inventario values ('13',NULL,'2','7/11/2023','80','4');	
+insert into  inventario values ('14',NULL,'4','7/12/2023','84','4');	
+insert into  inventario values ('15',NULL,'5','7/13/2023','82','4');	
+insert into  inventario values ('16',NULL,'6','7/14/2023','80','4');	
+insert into  inventario values ('17',NULL,'1','7/15/2023','70','5');	
+insert into  inventario values ('18',NULL,'2','7/16/2023','74','5');	
+insert into  inventario values ('19',NULL,'4','7/17/2023','72','5');	
+insert into  inventario values ('20',NULL,'5','7/18/2023','70','5');	
+insert into  inventario values ('21',NULL,'6','7/19/2023','11','6');	
+insert into  inventario values ('22',NULL,'1','7/20/2023','11','6');	
+insert into  inventario values ('23',NULL,'1','8/10/2023','11','6');	
+insert into  inventario values ('24',NULL,'2','8/11/2023','11','6');	
+insert into  inventario values ('25',NULL,'4','8/12/2023','20','7');	
+insert into  inventario values ('26',NULL,'5','8/13/2023','21','7');	
+insert into  inventario values ('27',NULL,'6','8/14/2023','20','7');	
+insert into  inventario values ('28',NULL,'1','8/15/2023','20','7');	
+insert into  inventario values ('29',NULL,'2','8/16/2023','17','8');	
+insert into  inventario values ('30',NULL,'4','8/17/2023','18','8');	
+insert into  inventario values ('31',NULL,'5','8/18/2023','18','8');	
+insert into  inventario values ('32',NULL,'6','8/19/2023','17','8');	
+insert into  inventario values ('33',NULL,'1','8/20/2023','20','9');	
+insert into  inventario values ('34',NULL,'1','9/10/2023','21','9');	
+insert into  inventario values ('35',NULL,'2','9/11/2023','20','9');	
+insert into  inventario values ('36',NULL,'4','9/12/2023','20','9');	
+insert into  inventario values ('37',NULL,'5','9/13/2023','17','10');	
+insert into  inventario values ('38',NULL,'6','9/14/2023','18','10');	
+insert into  inventario values ('39',NULL,'1','9/15/2023','18','10');	
+insert into  inventario values ('40',NULL,'2','9/16/2023','17','10');	
+insert into  inventario values ('41',NULL,'4','9/17/2023','18','11');	
+insert into  inventario values ('42',NULL,'5','9/18/2023','23','11');	
+insert into  inventario values ('43',NULL,'6','9/19/2023','18','11');	
+insert into  inventario values ('44',NULL,'1','9/20/2023','17','11');	
+insert into  inventario values ('45',NULL,'1','10/10/2023','25','12');	
+insert into  inventario values ('46',NULL,'2','10/11/2023','18','12');	
+insert into  inventario values ('47',NULL,'4','10/12/2023','15','12');	
+insert into  inventario values ('48',NULL,'5','10/13/2023','30','12');	
 select * from inventario;
+
+--- ENSAMBLES 
+
+insert into  ensamble values ('1','10/13/2023',true,'301');
+insert into  ensamble values ('2','10/14/2023',false,NULL);
+insert into  ensamble values ('3','10/15/2023',false,NULL);
+select * from ensamble;
+
+-- DETALLE ENSAMBLE
+insert into  detalleensamble values ('1','1','1');
+insert into  detalleensamble values ('2','1','5');
+insert into  detalleensamble values ('3','1','9');
+insert into  detalleensamble values ('4','1','13');
+insert into  detalleensamble values ('5','1','17');
+insert into  detalleensamble values ('6','2','21');
+insert into  detalleensamble values ('7','2','25');
+insert into  detalleensamble values ('8','2','29');
+insert into  detalleensamble values ('9','2','33');
+insert into  detalleensamble values ('10','2','37');
+insert into  detalleensamble values ('11','3','41');
+insert into  detalleensamble values ('12','3','45');
+insert into  detalleensamble values ('13','3','2');
+insert into  detalleensamble values ('14','3','6');
+insert into  detalleensamble values ('15','3','10');
+select * from detalleensamble;
+
+select * from factura;
+select * from referenciaelemento;
+
+-- CORRECCIONES POR ERRORES
+
+--alter table ensamble drop constraint FK_ENSAMBLE_RELATIONS_TIPODETA
+alter table ensamble drop column idtipodeta
+alter table ensamble ADD COLUMN CODEMPLEADO          VARCHAR(3)           null;
+alter table ENSAMBLE
+   add constraint FK_ENSAMBLE_RELATIONS_EMPLEADO foreign key (CODEMPLEADO)
+      references EMPLEADO (CODEMPLEADO)
+      on delete restrict on update restrict;
+
 
 --- Querys importantes
 select E.nomempleado, E.apeempleado,  H.codempleado, H.codempleado
 from historiacargo H, empleado E
 where E.codempleado = H.codempleado;
+
