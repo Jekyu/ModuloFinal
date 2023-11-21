@@ -29,6 +29,7 @@ public class Login extends JFrame {
 	private JLabel lblinfo;
 	private JSeparator separator;
 	private JSeparator separator_1;
+	private JLabel lblNewLabel;
 /*
 	/**
 	 * Launch the application.
@@ -53,7 +54,7 @@ public class Login extends JFrame {
 		setTitle("INICIO DE SESION");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 410, 490);
+		setBounds(100, 100, 606, 468);
 		background = new JPanel();
 		background.setBackground(new Color(255, 255, 255));
 		background.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,7 +65,7 @@ public class Login extends JFrame {
 		//-----  JTextField
 		
 		txtCodigo = new JTextField();
-		txtCodigo.setBounds(100, 120, 200, 20);
+		txtCodigo.setBounds(300, 123, 200, 20);
 		background.add(txtCodigo);
 		txtCodigo.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
@@ -80,7 +81,7 @@ public class Login extends JFrame {
 		});
 		
 		txtCedula = new JTextField();
-		txtCedula.setBounds(100, 200, 200, 20);
+		txtCedula.setBounds(300, 203, 200, 20);
 		txtCedula.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				 if(txtCedula.getText().equals("Ingrese su identificación")) {
@@ -104,13 +105,13 @@ public class Login extends JFrame {
 		separator = new JSeparator();
 		separator.setBackground(new Color(128, 128, 128));
 		separator.setForeground(new Color(128, 128, 128));
-		separator.setBounds(100, 145, 200, 1);
+		separator.setBounds(300, 148, 200, 1);
 		background.add(separator);
 		
 		separator_1 = new JSeparator();
 		separator_1.setForeground(new Color(128, 128, 128));
 		separator_1.setBackground(Color.BLACK);
-		separator_1.setBounds(100, 225, 200, 1);
+		separator_1.setBounds(300, 228, 200, 1);
 		background.add(separator_1);
 		
 		
@@ -120,7 +121,7 @@ public class Login extends JFrame {
 		btnAceptar.setBackground(new Color(240, 255, 240));
 		btnAceptar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		btnAceptar.setBorder(null);
-		btnAceptar.setBounds(100, 280, 200, 23);
+		btnAceptar.setBounds(300, 283, 200, 23);
 		btnAceptar.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				btnAceptar.setBackground(new Color(152, 251, 152));
@@ -137,7 +138,7 @@ public class Login extends JFrame {
 		btnLimpiar.setBackground(new Color(250, 240, 230));
 		btnLimpiar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		btnLimpiar.setBorder(null);
-		btnLimpiar.setBounds(100, 310, 200, 23);
+		btnLimpiar.setBounds(300, 313, 200, 23);
 		btnLimpiar.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				btnLimpiar.setBackground(new Color(250, 128, 114));
@@ -153,10 +154,19 @@ public class Login extends JFrame {
 		background.add(btnLimpiar);
 		
 		
+		JLabel lblImagen = new JLabel("New label");
+		lblImagen.setVerticalAlignment(SwingConstants.TOP);
+		lblImagen.setIcon(new ImageIcon(Login.class.getResource("/imagenes/EL RASHO.png")));
+		lblImagen.setBackground(SystemColor.activeCaption);
+		lblImagen.setBounds(0, 0, 217, 437);
+		background.add(lblImagen);
+		
 		lblinfo = new JLabel("INICIO DE SESIÓN");
 		lblinfo.setFont(new Font("Roboto", Font.BOLD, 24));
-		lblinfo.setBounds(100, 42, 200, 27);
+		lblinfo.setBounds(300, 30, 200, 27);
 		background.add(lblinfo);
+		
+		
 	}
 	
 	// ---- Con textDefault tambien se puede agregar los datos de la consulta 

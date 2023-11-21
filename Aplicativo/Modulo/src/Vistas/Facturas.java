@@ -22,6 +22,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Facturas extends JFrame {
 
@@ -116,28 +118,32 @@ public class Facturas extends JFrame {
 		
 		//------------Botones 
 		
-		final JButton btnGuardar = new JButton("GUARDAR");
-		btnGuardar.setBackground(new Color(240, 255, 240));
-		btnGuardar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
-		btnGuardar.setBorder(null);
-		btnGuardar.setBounds(21, 120, 210, 23);
-		btnGuardar.addMouseListener(new MouseAdapter() {
+		final JButton btnAceptar = new JButton("ACEPTAR");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAceptar.setBackground(new Color(240, 230, 140));
+		btnAceptar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
+		btnAceptar.setBorder(null);
+		btnAceptar.setBounds(21, 96, 210, 23);
+		btnAceptar.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
-				btnGuardar.setBackground(new Color(152, 251, 152));
+				btnAceptar.setBackground(new Color(255, 255, 0));
 			}
 			
 			
 			public void mouseExited(MouseEvent e) {
-				btnGuardar.setBackground(new Color(240, 255, 240));
+				btnAceptar.setBackground(new Color(240, 230, 140));
 			}
 		});
-		background.add(btnGuardar);
+		background.add(btnAceptar);
 		
 		final JButton btnLimpiar = new JButton("LIMPIAR");
 		btnLimpiar.setBackground(new Color(250, 240, 230));
 		btnLimpiar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		btnLimpiar.setBorder(null);
-		btnLimpiar.setBounds(21, 154, 210, 23);
+		btnLimpiar.setBounds(300, 204, 210, 23);
 		btnLimpiar.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				btnLimpiar.setBackground(new Color(250, 128, 114));
@@ -170,13 +176,42 @@ public class Facturas extends JFrame {
 		btnConsultar.setBounds(300, 96, 210, 23);
 		background.add(btnConsultar);
 		
-		JLabel lblImagen = new JLabel("New label");
-		lblImagen.setVerticalAlignment(SwingConstants.TOP);
-		lblImagen.setIcon(new ImageIcon(Login.class.getResource("/imagenes/EL RASHO.png")));
-		lblImagen.setBackground(SystemColor.activeCaption);
-		lblImagen.setBounds(21, 29, 57, 57);
-		background.add(lblImagen);
+		JButton btnTerminar = new JButton("TERMINAR");
+		btnTerminar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
+		btnTerminar.setBorder(null);
+		btnTerminar.setBackground(new Color(240, 255, 240));
+		btnTerminar.setBounds(21, 130, 210, 23);
+		btnTerminar.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				btnTerminar.setBackground(new Color(152, 251, 152));
+			}
+			
+			
+			public void mouseExited(MouseEvent e) {
+				btnTerminar.setBackground(new Color(240, 255, 240));
+			}
+		});
+		background.add(btnTerminar);
 		
+		
+		//---- Imagenes
+		
+		JLabel lblEmpleadoPic = new JLabel("Empleado Imagen");
+		lblEmpleadoPic.setVerticalAlignment(SwingConstants.TOP);
+		lblEmpleadoPic.setIcon(new ImageIcon(Facturas.class.getResource("/imagenes/RayoProf2.jpg")));
+		lblEmpleadoPic.setBackground(SystemColor.activeCaption);
+		lblEmpleadoPic.setBounds(21, 29, 57, 57);
+		background.add(lblEmpleadoPic);
+		
+		JLabel lblClientePic = new JLabel("Cliente Imagen");
+		lblClientePic.setVerticalAlignment(SwingConstants.TOP);
+		lblClientePic.setIcon(new ImageIcon(Facturas.class.getResource("/imagenes/RayoProf.jpg")));
+		lblClientePic.setBackground(SystemColor.activeCaption);
+		lblClientePic.setBounds(21, 188, 57, 57);
+		background.add(lblClientePic);
+		
+		
+		// ------ Labels
 		
 		lblinfo = new JLabel("CONSULTA CLIENTE");
 		lblinfo.setFont(new Font("Roboto", Font.BOLD, 18));
@@ -236,7 +271,7 @@ public class Facturas extends JFrame {
 		
 		JLabel nombreCliente = new JLabel("Aquí nombre Cliente");
 		nombreCliente.setFont(new Font("Roboto", Font.BOLD, 18));
-		nombreCliente.setBounds(88, 201, 190, 20);
+		nombreCliente.setBounds(88, 188, 190, 20);
 		background.add(nombreCliente);
 		
 		txtAquLaId = new JTextField();
@@ -247,8 +282,9 @@ public class Facturas extends JFrame {
 		txtAquLaId.setColumns(10);
 		txtAquLaId.setBorder(null);
 		txtAquLaId.setBackground(Color.WHITE);
-		txtAquLaId.setBounds(88, 223, 190, 20);
+		txtAquLaId.setBounds(88, 207, 190, 20);
 		background.add(txtAquLaId);
+		
 	}
 	
 	// ---- Con textDefault tambien se puede agregar los datos de la consulta 
